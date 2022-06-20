@@ -11,8 +11,9 @@ gTTS
 서보모터는 정지, 패쇄된 상태라면 서보모터는 동작한다.
 
 ### 블럭도
-https://user-images.githubusercontent.com/61779129/174603516-b23c90dd-4188-46e6-beeb-7e820713674f.PNG
-
+<p align="center">
+<img src="https://user-images.githubusercontent.com/61779129/174603516-b23c90dd-4188-46e6-beeb-7e820713674f.PNG">
+</p>
 ### 시연영상
 <p align="center">
 <img src="https://user-images.githubusercontent.com/61779129/174593139-22e175c3-1435-4af8-8c7b-ecccdb52d200.gif">
