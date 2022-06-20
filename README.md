@@ -41,7 +41,7 @@ from image_classifier import ImageClassifierOptions
 from sklearn.utils import indexable
 from gtts import gTTS # gtts
 
-from pymata4 import pymata4 # ARDUINO + SERVO
+from pymata4 import pymata4                 # ARDUINO + SERVO
 #SERVO INFORMATION
 DELAY = 1
 MIN = 5
