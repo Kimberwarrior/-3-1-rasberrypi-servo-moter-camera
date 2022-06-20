@@ -26,20 +26,19 @@ from sklearn.utils import indexable
 from gtts import gTTS # gtts
 
 from pymata4 import pymata4 # ARDUINO + SERVO
-#SERVO INFORMATION
 DELAY = 1
 MIN = 5
 MAX = 175
 MID = 90
 board = pymata4.Pymata4()
 
-servo = board.set_pin_mode_servo(11) # 11번핀을 서보모터 신호선으로 설정
+servo = board.set_pin_mode_servo(11)
 
-def move_servo(v):                  # 파이선 함수 정의
+def move_servo(v):
     board.servo_write(11, v)
     time.sleep(1)
 
-_ROW_SIZE = 20  # pixels # Visualization parameters
+_ROW_SIZE = 20  # pixels
 _LEFT_MARGIN = 24  # pixels
 _TEXT_COLOR = (0, 0, 255)  # red
 _FONT_SIZE = 1
@@ -49,21 +48,21 @@ _FPS_AVERAGE_FRAME_COUNT = 10
 
 def run(model: str, max_results: int, num_threads: int, enable_edgetpu: bool,
         camera_id: int, width: int, height: int) -> None:
-
-  options = ImageClassifierOptions( # Initialize the image classification model
+        
+  options = ImageClassifierOptions(
       num_threads=num_threads,
       max_results=max_results,
       enable_edgetpu=enable_edgetpu)
   classifier = ImageClassifier(model, options)
 
-  counter, fps = 0, 0 # Variables to calculate FPS
+  counter, fps = 0, 0
   start_time = time.time()
 
-  cap = cv2.VideoCapture(camera_id) # Start capturing video input from the camera
+  cap = cv2.VideoCapture(camera_id)
   cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
   cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-
-  while cap.isOpened(): # Continuously capture images from the camera and run inference
+  
+  while cap.isOpened():
     success, image = cap.read()
     if not success:
       sys.exit(
@@ -72,8 +71,8 @@ def run(model: str, max_results: int, num_threads: int, enable_edgetpu: bool,
 
     counter += 1
     image = cv2.flip(image, 1)
-    categories = classifier.classify(image)  # List classification results
-    for idx, category in enumerate(categories): # Show classification results on the image
+    categories = classifier.classify(image)
+    for idx, category in enumerate(categories):
       class_name = category.label
       score = round(category.score, 2)
       result_text = class_name + ' (' + str(score) + ')'
@@ -82,7 +81,7 @@ def run(model: str, max_results: int, num_threads: int, enable_edgetpu: bool,
                   _FONT_SIZE, _TEXT_COLOR, _FONT_THICKNESS)
     print(categories[0].label)
     cv2.imshow('image_classification', image)
-    if(categories[0].label=='0 door_Close'):   # door status = closed
+    if(categories[0].label=='0 door_Close'):
       f=open("door_Close.txt",'r')
       myText=f.read().replace('\n',' ')
       language="en"
@@ -96,7 +95,7 @@ def run(model: str, max_results: int, num_threads: int, enable_edgetpu: bool,
       f.close()
       cv2.waitKey(3000)
       break
-    if(categories[0].label=='1 door_Open'):  # door status = open
+    if(categories[0].label=='1 door_Open'):
       f=open("door_Open.txt",'r')
       myText=f.read().replace('\n',' ')
       language="en"
@@ -111,7 +110,8 @@ def run(model: str, max_results: int, num_threads: int, enable_edgetpu: bool,
       cv2.waitKey(3000)
       if cv2.waitKey(1) == 27: # keep pressing the ESC key.
         break
-  cap.release() # Stop the program if the ESC key is pressed.
+        
+  cap.release()
   cv2.destroyAllWindows()
   
   while(1):
