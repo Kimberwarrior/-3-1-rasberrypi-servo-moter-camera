@@ -10,7 +10,7 @@ gTTS
 개방되었는지 폐쇄되었는지를 시각적으로 확인, gTTs를 통해 청각적으로도 확인한다. 문이 개방된 상태라면 서보모터는 정지, 패쇄된 상태라면 서보모터는 동작한다.
 
 ### 소스코드
-'''c
+```c
 
 import argparse
 import sys
@@ -167,7 +167,7 @@ def main():
 if __name__ == '__main__':
   main()
 
-'''
+```
 
 ### 블럭도
 <p align="center">
