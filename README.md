@@ -1,7 +1,7 @@
 # [프로젝트LAB 3-1 기말자료] 라즈베리파이를 이용한 장치조절
 
 ### 주요기술
-tenteachable machine
+teachable machine
 
 gTTS
 
